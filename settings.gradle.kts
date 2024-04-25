@@ -36,5 +36,6 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 rootProject.name = "composeApp"
 include(":app")
+include(":core:network")
 include(":product:data")
 include(":product:feature")
