@@ -1,6 +1,7 @@
 package com.example.composeapp.product.data
 
 import com.example.composeapp.core.network.NoAuthRetrofit
+import com.example.composeapp.product.data.product.ProductService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

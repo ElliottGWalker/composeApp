@@ -1,4 +1,4 @@
-package com.example.composeapp.product.data
+package com.example.composeapp.product.data.product
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
