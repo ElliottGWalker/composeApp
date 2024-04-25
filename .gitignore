@@ -35,6 +35,7 @@ output.json
 .idea/modules.xml
 .idea/runConfigurations.xml
 .idea/vcs.xml
+.idea/deploymentTargetDropDown.xml
 !.idea/IntelliLang.xml
 !.idea/ktlint-plugin.xml
 
