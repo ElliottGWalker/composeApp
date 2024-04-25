@@ -5,11 +5,9 @@ plugins {
 
 android {
     namespace = "com.example.composeapp"
-    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.composeapp"
-        minSdk = 24
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -47,7 +45,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
