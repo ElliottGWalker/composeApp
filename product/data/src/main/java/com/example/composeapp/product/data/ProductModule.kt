@@ -2,6 +2,7 @@ package com.example.composeapp.product.data
 
 import com.example.composeapp.core.network.NoAuthRetrofit
 import com.example.composeapp.product.data.product.ProductService
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,6 +13,10 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 internal interface ProductModule {
+    @Binds
+    @Singleton
+    fun bindProductRepo(gymsharkProductRepo: GymsharkProductRepo): ProductRepo
+
     companion object {
         @Provides
         @Singleton
