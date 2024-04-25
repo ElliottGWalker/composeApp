@@ -26,16 +26,16 @@ output.json
 
 # IntelliJ
 *.iml
-.idea/
-misc.xml
-deploymentTargetDropDown.xml
-render.experimental.xml
-caches
-libraries
-modules.xml
-workspace.xml
-navEditor.xml
-assetWizardSettings.xml
+.idea/misc.xml
+.idea/gradle.xml
+.idea/deploymentTargetDropDown.xml
+.idea/render.experimental.xml
+.idea/caches
+.idea/libraries
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
 
 # Keystore files
 *.jks
