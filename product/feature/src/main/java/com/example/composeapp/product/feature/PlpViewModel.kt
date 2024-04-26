@@ -2,8 +2,12 @@ package com.example.composeapp.product.feature
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.composeapp.core.network.Response
 import com.example.composeapp.product.data.ProductRepo
+import com.example.composeapp.product.data.product.ProductDetails
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -13,13 +17,35 @@ class PlpViewModel
     constructor(
         private val productRepo: ProductRepo,
     ) : ViewModel() {
-        fun searchProducts() {
+        private val _uiState: MutableStateFlow<PlpUiState> =
+            MutableStateFlow(
+                PlpUiState.LoadingPlpUiState,
+            )
+        val uiState: StateFlow<PlpUiState>
+            get() = _uiState
+
+        fun getProducts() {
             viewModelScope.launch {
-                val response = productRepo.getProducts()
-                when {
-                    response.isSuccess -> {}
-                    response.isFailure -> {}
+                when (val response = productRepo.getProducts()) {
+                    is Response.Success -> {
+                        onGetProductsResponse(response.data)
+                    }
+                    is Response.Failure -> {
+                        onGetProductsError()
+                    }
                 }
             }
+        }
+
+        private fun onGetProductsResponse(productDetails: List<ProductDetails>) {
+            _uiState.value =
+                when {
+                    productDetails.isEmpty() -> PlpUiState.LoadedEmptyPlpUiState
+                    else -> PlpUiState.LoadedPlpUiState(productDetails)
+                }
+        }
+
+        private fun onGetProductsError() {
+            _uiState.value = PlpUiState.LoadedErrorPlpUiState
         }
     }

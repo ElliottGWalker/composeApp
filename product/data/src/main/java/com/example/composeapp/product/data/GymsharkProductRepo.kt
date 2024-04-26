@@ -1,5 +1,8 @@
 package com.example.composeapp.product.data
 
+import com.example.composeapp.core.network.Response
+import com.example.composeapp.core.network.Response.Failure
+import com.example.composeapp.core.network.Response.Success
 import com.example.composeapp.product.data.product.ProductDetails
 import com.example.composeapp.product.data.product.ProductService
 import javax.inject.Inject
@@ -11,12 +14,12 @@ internal class GymsharkProductRepo
     constructor(
         private val productService: ProductService,
     ) : ProductRepo {
-        override suspend fun getProducts(): Result<List<ProductDetails>> {
+        override suspend fun getProducts(): Response<List<ProductDetails>> {
             return try {
                 val responses = productService.getProducts()
-                Result.success(value = responses.products)
+                Success(data = responses.products)
             } catch (e: Exception) {
-                Result.failure(e)
+                Failure(e)
             }
         }
     }

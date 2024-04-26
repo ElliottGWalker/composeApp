@@ -36,6 +36,7 @@ android {
 
 dependencies {
     implementation(projects.product.data)
+    implementation(projects.core.network)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
