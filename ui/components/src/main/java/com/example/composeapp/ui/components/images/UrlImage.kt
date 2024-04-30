@@ -72,6 +72,7 @@ internal fun ImageContent(
         Image(
             painter = painterResource(id = R.drawable.ic_image_not_found),
             contentDescription = contentDescription,
+            modifier = Modifier.fillMaxSize()
         )
     } else {
         showingError.value = false

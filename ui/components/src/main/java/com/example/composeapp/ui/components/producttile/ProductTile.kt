@@ -57,7 +57,8 @@ fun ProductTile(
                         modifier =
                             Modifier
                                 .fillMaxWidth()
-                                .align(Alignment.BottomStart),
+                                .align(Alignment.BottomStart)
+                                .padding(4.dp),
                     )
                 }
             }
