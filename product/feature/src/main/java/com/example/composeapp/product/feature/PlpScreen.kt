@@ -17,6 +17,8 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -28,17 +30,25 @@ import com.example.composeapp.product.feature.PlpUiState.LoadedErrorPlpUiState
 import com.example.composeapp.product.feature.PlpUiState.LoadedPlpUiState
 import com.example.composeapp.product.feature.PlpUiState.LoadingPlpUiState
 import com.example.composeapp.product.feature.components.PlpProductTile
+import com.example.composeapp.product.feature.destinations.PdpScreenDestination
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
-@ProductNavGraph(start = true)
+@PlpNavGraph(start = true)
 @Destination
 @Composable
 fun PlpScreen(
     navigator: DestinationsNavigator,
     viewModel: PlpViewModel = hiltViewModel(),
-    onProductClick: (ProductDetails) -> Unit,
 ) {
+    val uiState by viewModel.uiState.collectAsState()
+    // This would be passed from the previous category/search screen
+    val searchTerm = "Leggings"
+    PlpScreen(
+        uiState = uiState,
+        searchTerm = searchTerm,
+        onProductClick = { navigator.navigate(PdpScreenDestination()) },
+    )
 }
 
 @Composable

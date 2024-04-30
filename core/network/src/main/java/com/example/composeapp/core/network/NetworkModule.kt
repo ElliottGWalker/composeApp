@@ -9,6 +9,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Qualifier
 import javax.inject.Singleton
 
@@ -18,7 +19,7 @@ private annotation class NetworkMoshi
 
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
-private annotation class NoAuthOkHttpClient
+private annotation class CommonOkHttpClient
 
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
@@ -50,8 +51,18 @@ internal interface NetworkModule {
 
         @Provides
         @Singleton
-        @NoAuthOkHttpClient
-        fun provideNoAuthOkHttpClient(
+        fun provideOkHttpClientBuilder() =
+            OkHttpClient
+                .Builder()
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(60, TimeUnit.SECONDS)
+                .writeTimeout(60, TimeUnit.SECONDS)
+                .retryOnConnectionFailure(true)
+
+        @Provides
+        @Singleton
+        @CommonOkHttpClient
+        fun provideCommonOkHttpClient(
             builder: OkHttpClient.Builder,
             loggingInterceptor: HttpLoggingInterceptor,
         ): OkHttpClient {
@@ -63,10 +74,14 @@ internal interface NetworkModule {
 
         @Provides
         @Singleton
+        fun provideLoggingInterceptor() = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC)
+
+        @Provides
+        @Singleton
         @NoAuthRetrofit
         fun provideNoAuthRetrofit(
             @NetworkMoshi moshi: Moshi,
-            @NoAuthOkHttpClient okHttpClient: OkHttpClient,
+            @CommonOkHttpClient okHttpClient: OkHttpClient,
         ): Retrofit =
             buildRetrofit(
                 moshi,
