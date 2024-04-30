@@ -1,15 +1,14 @@
 package com.example.composeapp.product.data.product
 
-import com.example.composeapp.product.data.product.Label.*
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 class ProductDetails(
-    @Json(name = "id") val id: Int,
+    @Json(name = "id") val id: Long,
     @Json(name = "sku") val sku: String,
     @Json(name = "inStock") val inStock: Boolean,
-    @Json(name = "sizeInStock") val sizeInStock: List<String>,
+    @Json(name = "sizeInStock") val sizeInStock: List<String>?,
     @Json(name = "availableSizes") val availableSizes: List<AvailableSize>,
     @Json(name = "handle") val handle: String,
     @Json(name = "title") val title: String,
@@ -17,7 +16,7 @@ class ProductDetails(
     @Json(name = "type") val type: String,
     @Json(name = "gender") val gender: List<String>,
     @Json(name = "fit") val fit: String?,
-    @Json(name = "labels") val labels: List<Label>?,
+    @Json(name = "labels") val labels: List<String>?,
     @Json(name = "colour") val colour: String,
     @Json(name = "price") val price: Double,
     @Json(name = "compareAtPrice") val compareAtPrice: Boolean?,
@@ -43,9 +42,9 @@ class ProductDetails(
                 title = "title",
                 description = "desc",
                 type = "type",
-                gender = listOf("Male", "Female"),
+                gender = listOf("m", "f"),
                 fit = "fit",
-                labels = listOf(NEW, GOING_FAST),
+                labels = listOf("NEW", "GOING_FAST"),
                 colour = "Grey",
                 price = 10.00,
                 compareAtPrice = false,
@@ -64,7 +63,7 @@ class ProductDetails(
 
 @JsonClass(generateAdapter = true)
 class AvailableSize(
-    @Json(name = "id") val id: Int,
+    @Json(name = "id") val id: Long,
     @Json(name = "inStock") val inStock: Boolean,
     @Json(name = "inventoryQuantity") val inventoryQuantity: Int,
     @Json(name = "price") val price: Double,
@@ -86,24 +85,15 @@ class AvailableSize(
     }
 }
 
-enum class Label(val title: String) {
-    NEW("new"),
-    GOING_FAST("going-fast"),
-    LIMITED_EDITION("limited-edition"),
-    POPULAR("popular"),
-    RECYCLED_NYLON("recycled-nylon"),
-    RECYCLED_POLYESTER("recycled-polyester"),
-}
-
 @JsonClass(generateAdapter = true)
 class Media(
     @Json(name = "admin_graphql_api_id") val adminGraphQlApiId: String,
     @Json(name = "alt") val alt: String?,
-    @Json(name = "created_at") val createdAt: String?,
+    @Json(name = "created_at") val createdAt: String,
     @Json(name = "height") val height: Int,
-    @Json(name = "id") val id: Int,
+    @Json(name = "id") val id: Long,
     @Json(name = "position") val position: Int,
-    @Json(name = "product_id") val productId: Int,
+    @Json(name = "product_id") val productId: Long,
     @Json(name = "src") val src: String,
     @Json(name = "updated_at") val updatedAt: String,
     @Json(name = "variant_ids") val variantIds: List<Int>,

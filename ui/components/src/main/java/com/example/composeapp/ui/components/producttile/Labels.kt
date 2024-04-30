@@ -14,13 +14,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.composeapp.product.data.product.Label
-import com.example.composeapp.product.data.product.Label.*
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun Labels(
-    items: List<Label>,
+    items: List<String>,
     modifier: Modifier = Modifier,
 ) {
     FlowRow(
@@ -30,7 +28,7 @@ fun Labels(
     ) {
         for (label in items) {
             Text(
-                text = label.title,
+                text = label,
                 fontWeight = FontWeight.Bold,
                 modifier =
                     Modifier
@@ -45,7 +43,7 @@ fun Labels(
 @Composable
 private fun LabelsShortListPreview() {
     Labels(
-        items = listOf(NEW, GOING_FAST),
+        items = listOf("NEW", "GOING_FAST"),
         modifier = Modifier.fillMaxWidth(),
     )
 }
@@ -56,12 +54,12 @@ private fun LabelsLongListPreview() {
     Labels(
         items =
             listOf(
-                NEW,
-                GOING_FAST,
-                LIMITED_EDITION,
-                POPULAR,
-                RECYCLED_NYLON,
-                RECYCLED_POLYESTER
+                "NEW",
+                "GOING_FAST",
+                "LIMITED_EDITION",
+                "POPULAR",
+                "RECYCLED_NYLON",
+                "RECYCLED_POLYESTER",
             ),
         modifier = Modifier.fillMaxWidth(),
     )

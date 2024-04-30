@@ -16,8 +16,8 @@ internal class GymsharkProductRepo
     ) : ProductRepo {
         override suspend fun getProducts(): Response<List<ProductDetails>> {
             return try {
-                val responses = productService.getProducts()
-                Success(data = responses.products)
+                val response = productService.getProducts()
+                Success(data = response.products)
             } catch (e: Exception) {
                 Failure(e)
             }

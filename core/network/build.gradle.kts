@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.kapt)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
 }
 
@@ -22,6 +23,8 @@ dependencies {
     implementation(libs.okhttp.loggingInterceptor)
     implementation(libs.okhttp.urlConnection)
     implementation(libs.moshi)
+    ksp(libs.moshi.codegen)
+    implementation(libs.moshi.adapters)
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.moshi)
 

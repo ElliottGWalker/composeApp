@@ -24,7 +24,12 @@ class PlpViewModel
         val uiState: StateFlow<PlpUiState>
             get() = _uiState
 
+        init {
+            getProducts()
+        }
+
         fun getProducts() {
+            _uiState.value = PlpUiState.LoadingPlpUiState
             viewModelScope.launch {
                 when (val response = productRepo.getProducts()) {
                     is Response.Success -> {

@@ -3,6 +3,7 @@ package com.example.composeapp.product.feature
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -11,6 +12,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -21,6 +23,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -48,6 +52,7 @@ fun PlpScreen(
         uiState = uiState,
         searchTerm = searchTerm,
         onProductClick = { navigator.navigate(PdpScreenDestination()) },
+        onRetryClick = { viewModel.getProducts() },
     )
 }
 
@@ -56,6 +61,7 @@ private fun PlpScreen(
     uiState: PlpUiState,
     searchTerm: String,
     onProductClick: (ProductDetails) -> Unit,
+    onRetryClick: () -> Unit,
 ) {
     Scaffold(
         topBar = {
@@ -70,15 +76,13 @@ private fun PlpScreen(
         ) {
             when (uiState) {
                 is LoadingPlpUiState -> PlpLoadingContent()
-                is LoadedEmptyPlpUiState -> PlpLoadedEmptyContent()
+                is LoadedEmptyPlpUiState -> PlpLoadedEmptyContent(onRetryClick = onRetryClick)
                 is LoadedPlpUiState ->
                     PlpLoadedContent(
                         uiState = uiState,
                         onProductClick = onProductClick,
                     )
-                is LoadedErrorPlpUiState -> {
-                    // TODO:
-                }
+                is LoadedErrorPlpUiState -> PlpLoadedErrorContent(onRetryClick = onRetryClick,)
             }
         }
     }
@@ -105,8 +109,25 @@ private fun BoxScope.PlpLoadingContent() {
 }
 
 @Composable
-private fun PlpLoadedEmptyContent() {
-    // TODO: add ui here
+private fun PlpLoadedEmptyContent(onRetryClick: () -> Unit) {
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+    ) {
+        Text(
+            text = stringResource(R.string.no_products_returned),
+            textAlign = TextAlign.Center,
+        )
+        Button(
+            onClick = onRetryClick,
+            content = {
+                Text(text = stringResource(R.string.retry))
+            },
+        )
+    }
 }
 
 @Composable
@@ -135,6 +156,28 @@ private fun PlpLoadedContent(
     }
 }
 
+@Composable
+private fun PlpLoadedErrorContent(onRetryClick: () -> Unit) {
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+    ) {
+        Text(
+            text = stringResource(R.string.something_went_wrong_please_try_again),
+            textAlign = TextAlign.Center,
+        )
+        Button(
+            onClick = onRetryClick,
+            content = {
+                Text(text = stringResource(R.string.retry))
+            },
+        )
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 private fun PlpScreenLoadedWithProductsPreview() {
@@ -153,6 +196,7 @@ private fun PlpScreenLoadedWithProductsPreview() {
             ),
         searchTerm = "Leggings",
         onProductClick = { /* unused */ },
+        onRetryClick = { /* unused */ },
     )
 }
 
@@ -160,9 +204,31 @@ private fun PlpScreenLoadedWithProductsPreview() {
 @Composable
 private fun PlpScreenLoadingPreview() {
     PlpScreen(
-        uiState =
-        LoadingPlpUiState,
+        uiState = LoadingPlpUiState,
         searchTerm = "Leggings",
         onProductClick = { /* unused */ },
+        onRetryClick = { /* unused */ },
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PlpScreenLoadedEmptyStatePreview() {
+    PlpScreen(
+        uiState = LoadedEmptyPlpUiState,
+        searchTerm = "Leggings",
+        onProductClick = { /* unused */ },
+        onRetryClick = { /* unused */ },
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PlpScreenLoadedErrorStatePreview() {
+    PlpScreen(
+        uiState = LoadedErrorPlpUiState,
+        searchTerm = "Leggings",
+        onProductClick = { /* unused */ },
+        onRetryClick = { /* unused */ },
     )
 }
