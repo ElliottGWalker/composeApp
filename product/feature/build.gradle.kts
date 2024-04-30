@@ -38,9 +38,12 @@ dependencies {
     implementation(projects.product.data)
     implementation(projects.core.network)
 
+    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.lifecycle.viewmodel)
+    implementation(libs.androidx.material3)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.runtime)
     implementation(libs.androidx.ui.tooling)
