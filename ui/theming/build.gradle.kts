@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.composeapp.ui.components"
+    namespace = "com.example.composeapp.ui.theming"
 
     buildFeatures {
         compose = true
@@ -16,23 +16,16 @@ android {
 }
 
 dependencies {
-    implementation(projects.product.data)
-    implementation(projects.ui.theming)
 
-    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.material)
+    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.runtime)
-    implementation(libs.androidx.ui.tooling)
+    implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.coil)
+    implementation(libs.androidx.material3)
     implementation(libs.material)
-    implementation(libs.moshi)
-
     testImplementation(libs.junit)
-
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }

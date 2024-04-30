@@ -3,14 +3,12 @@ package com.example.composeapp.product.feature
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material.CircularProgressIndicator
@@ -25,6 +23,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.composeapp.product.data.product.ProductDetails
+import com.example.composeapp.product.feature.PlpUiState.LoadedErrorPlpUiState
+import com.example.composeapp.product.feature.PlpUiState.LoadedPlpUiState
+import com.example.composeapp.product.feature.PlpUiState.LoadingPlpUiState
 import com.example.composeapp.product.feature.components.PlpProductTile
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -52,17 +53,20 @@ private fun PlpScreen(
     ) { padding ->
         Box(
             modifier =
-            Modifier
-                .padding(padding)
-                .fillMaxSize(),
+                Modifier
+                    .padding(padding)
+                    .fillMaxSize(),
         ) {
             when (uiState) {
-                is PlpUiState.LoadingPlpUiState -> PlpLoadingContent()
-                is PlpUiState.LoadedEmptyPlpUiState -> PlpLoadedEmptyContent(searchTerm = searchTerm)
-                is PlpUiState.LoadedPlpUiState -> PlpLoadedContent(
-                    uiState = uiState,
-                    onProductClick = onProductClick,
-                )
+                is LoadingPlpUiState -> PlpLoadingContent()
+                is LoadedPlpUiState ->
+                    PlpLoadedContent(
+                        uiState = uiState,
+                        onProductClick = onProductClick,
+                    )
+                is LoadedErrorPlpUiState -> {
+                    // TODO:
+                }
             }
         }
     }
@@ -89,14 +93,8 @@ private fun BoxScope.PlpLoadingContent() {
 }
 
 @Composable
-private fun PlpLoadedEmptyContent(searchTerm: String) {
-    Column {
-    }
-}
-
-@Composable
 private fun PlpLoadedContent(
-    uiState: PlpUiState.LoadedPlpUiState,
+    uiState: LoadedPlpUiState,
     onProductClick: (ProductDetails) -> Unit,
 ) {
     val gridState = rememberLazyGridState()
@@ -107,10 +105,10 @@ private fun PlpLoadedContent(
             state = gridState,
             contentPadding = PaddingValues(4.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
             itemsIndexed(
-                items = uiState.plpList
+                items = uiState.plpList,
             ) { index, product ->
                 PlpProductTile(
                     product = product,
@@ -126,7 +124,7 @@ private fun PlpLoadedContent(
 private fun PlpScreenLoadedWithProductsPreview() {
     PlpScreen(
         uiState =
-            PlpUiState.LoadedPlpUiState(
+            LoadedPlpUiState(
                 plpList =
                     listOf(
                         ProductDetails.createMock(),
@@ -135,7 +133,7 @@ private fun PlpScreenLoadedWithProductsPreview() {
                     ),
             ),
         searchTerm = "Leggings",
-        onProductClick = { /* unused */ }
+        onProductClick = { /* unused */ },
     )
 }
 
@@ -144,8 +142,8 @@ private fun PlpScreenLoadedWithProductsPreview() {
 private fun PlpScreenLoadingPreview() {
     PlpScreen(
         uiState =
-            PlpUiState.LoadingPlpUiState,
+        LoadingPlpUiState,
         searchTerm = "Leggings",
-        onProductClick = { /* unused */ }
+        onProductClick = { /* unused */ },
     )
 }

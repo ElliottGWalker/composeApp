@@ -21,6 +21,7 @@ dependencies {
     implementation(projects.product.data)
     implementation(projects.core.network)
     implementation(projects.ui.components)
+    implementation(projects.ui.theming)
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.core.ktx)

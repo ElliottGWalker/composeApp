@@ -1,5 +1,6 @@
 package com.example.composeapp.product.data.product
 
+import com.example.composeapp.product.data.product.Label.*
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -16,7 +17,7 @@ class ProductDetails(
     @Json(name = "type") val type: String,
     @Json(name = "gender") val gender: List<String>,
     @Json(name = "fit") val fit: String?,
-    @Json(name = "labels") val labels: List<String>?,
+    @Json(name = "labels") val labels: List<Label>?,
     @Json(name = "colour") val colour: String,
     @Json(name = "price") val price: Double,
     @Json(name = "compareAtPrice") val compareAtPrice: Boolean?,
@@ -44,7 +45,7 @@ class ProductDetails(
                 type = "type",
                 gender = listOf("Male", "Female"),
                 fit = "fit",
-                labels = listOf(""),
+                labels = listOf(NEW, GOING_FAST),
                 colour = "Grey",
                 price = 10.00,
                 compareAtPrice = false,
@@ -83,6 +84,15 @@ class AvailableSize(
             sku = "AB12301",
         )
     }
+}
+
+enum class Label(val title: String) {
+    NEW("new"),
+    GOING_FAST("going-fast"),
+    LIMITED_EDITION("limited-edition"),
+    POPULAR("popular"),
+    RECYCLED_NYLON("recycled-nylon"),
+    RECYCLED_POLYESTER("recycled-polyester"),
 }
 
 @JsonClass(generateAdapter = true)

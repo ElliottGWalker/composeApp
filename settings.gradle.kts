@@ -1,5 +1,8 @@
 import com.android.build.api.dsl.SettingsExtension
 
+include(":ui:theming")
+
+
 include(":ui:components")
 
 
