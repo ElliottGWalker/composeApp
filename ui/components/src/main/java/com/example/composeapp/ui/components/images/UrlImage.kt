@@ -16,7 +16,7 @@ import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImagePainter
-import coil.compose.AsyncImagePainter.*
+import coil.compose.AsyncImagePainter.State
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.composeapp.ui.components.R
@@ -72,7 +72,7 @@ internal fun ImageContent(
         Image(
             painter = painterResource(id = R.drawable.ic_image_not_found),
             contentDescription = contentDescription,
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
         )
     } else {
         showingError.value = false

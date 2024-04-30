@@ -28,6 +28,9 @@ class ProductDetails(
     @Json(name = "media") val media: List<Media>,
     @Json(name = "objectID") val objectID: String,
 ) : Parcelable {
+    val imageUrls by lazy {
+        media.map { it.src }
+    }
     companion object {
         fun createMock() =
             ProductDetails(

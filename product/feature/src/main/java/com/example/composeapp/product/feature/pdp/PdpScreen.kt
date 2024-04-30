@@ -112,7 +112,7 @@ private fun PdpLoadedContent(uiState: LoadedPdpState) {
         val listState = rememberLazyListState()
         ProductImageCarousel(
             listState = listState,
-            mediaList = uiState.product.media,
+            imageUrls = uiState.product.imageUrls,
         )
         Column(
             verticalArrangement = Arrangement.spacedBy(8.dp),

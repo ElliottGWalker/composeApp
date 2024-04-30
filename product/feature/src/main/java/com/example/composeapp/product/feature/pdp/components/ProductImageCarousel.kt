@@ -14,15 +14,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.composeapp.product.data.product.Media
-import com.example.composeapp.product.data.product.ProductDetails
 import com.example.composeapp.ui.components.images.UrlImage
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun ProductImageCarousel(
     listState: LazyListState,
-    mediaList: List<Media>,
+    imageUrls: List<String>,
 ) {
     LazyRow(
         state = listState,
@@ -35,23 +33,20 @@ internal fun ProductImageCarousel(
                     ),
             ),
         modifier =
-            Modifier
-                .fillMaxWidth()
-                .height(400.dp),
+        Modifier
+            .fillMaxWidth()
+            .height(400.dp),
     ) {
-        items(mediaList) { media ->
-            CarouselImage(media)
+        items(imageUrls) { url ->
+            CarouselImage(imageUrl = url)
         }
     }
 }
 
 @Composable
-private fun CarouselImage(media: Media) {
+private fun CarouselImage(imageUrl: String) {
     Column {
-        UrlImage(
-            url = media.src,
-            contentDescription = "",
-        )
+        UrlImage(url = imageUrl, contentDescription = "")
     }
 }
 
@@ -61,12 +56,6 @@ private fun ProductImageCarouselPreview() {
     val listState = rememberLazyListState()
     ProductImageCarousel(
         listState = listState,
-        mediaList = ProductDetails.createMock().media,
+        imageUrls = listOf("", ""),
     )
-}
-
-@Preview
-@Composable
-private fun CarouselImagePreview() {
-    CarouselImage(media = Media.createMock(1))
 }
