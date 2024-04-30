@@ -7,30 +7,13 @@ plugins {
 
 android {
     namespace = "com.example.composeapp.product.feature"
-    compileSdk = 34
 
-    defaultConfig {
-        minSdk = 24
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
+    buildFeatures {
+        compose = true
     }
 
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro",
-            )
-        }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
 }
 
@@ -48,10 +31,21 @@ dependencies {
     implementation(libs.androidx.ui.runtime)
     implementation(libs.androidx.ui.tooling)
     implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.compose.destinations)
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)
     implementation(libs.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+}
+
+kotlin {
+    jvmToolchain(17)
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
 }

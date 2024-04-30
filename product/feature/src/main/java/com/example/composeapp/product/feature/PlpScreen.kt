@@ -6,9 +6,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.composeapp.product.data.product.ProductDetails
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
+@ProductNavGraph(start = true)
+@Destination
 @Composable
 fun PlpScreen(
+    navigator: DestinationsNavigator,
     viewModel: PlpViewModel = hiltViewModel(),
     onProductClick: (ProductDetails) -> Unit,
 ) {
@@ -21,7 +26,7 @@ private fun PlpScreen(uiState: PlpUiState) {
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun PlpScreenLoadedWithProductsPreview() {
     PlpScreen(

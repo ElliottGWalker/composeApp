@@ -8,21 +8,8 @@ plugins {
 android {
     namespace = "com.example.composeapp.product.data"
 
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro",
-            )
-        }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
 }
 
@@ -33,4 +20,14 @@ dependencies {
     kapt(libs.hilt.compiler)
     implementation(libs.retrofit)
     implementation(libs.moshi)
+}
+
+kotlin {
+    jvmToolchain(17)
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
 }

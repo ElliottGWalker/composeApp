@@ -4,6 +4,7 @@ import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -24,8 +25,8 @@ private annotation class NoAuthOkHttpClient
 annotation class NoAuthRetrofit
 
 @Module
-@InstallIn(Singleton::class)
-interface NetworkModule {
+@InstallIn(SingletonComponent::class)
+internal interface NetworkModule {
     companion object {
         @Provides
         @Singleton
