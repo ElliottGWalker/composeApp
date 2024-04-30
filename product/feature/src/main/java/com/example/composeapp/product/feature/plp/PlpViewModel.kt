@@ -1,4 +1,4 @@
-package com.example.composeapp.product.feature
+package com.example.composeapp.product.feature.plp
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

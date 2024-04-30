@@ -1,8 +1,11 @@
 package com.example.composeapp.product.data.product
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 @JsonClass(generateAdapter = true)
 class ProductDetails(
     @Json(name = "id") val id: Long,
@@ -24,7 +27,7 @@ class ProductDetails(
     @Json(name = "featuredMedia") val featuredMedia: Media,
     @Json(name = "media") val media: List<Media>,
     @Json(name = "objectID") val objectID: String,
-) {
+) : Parcelable {
     companion object {
         fun createMock() =
             ProductDetails(
@@ -40,7 +43,7 @@ class ProductDetails(
                     ),
                 handle = "Handle",
                 title = "title",
-                description = "desc",
+                description = "<meta charset=\"utf-8\">\n<p data-mce-fragment=\"1\"><strong data-mce-fragment=\"1\">RUN WITH IT</strong></p>\n<p data-mce-fragment=\"1\"><br data-mce-fragment=\"1\">Your run requires enduring comfort and support, so step out and hit the road in Speed. Made with zero-distractions and lightweight, ventilating fabrics that move with you, you can trust in Speed no matter how far you go.</p>\n<p data-mce-fragment=\"1\"> <br data-mce-fragment=\"1\"></p>\n<p data-mce-fragment=\"1\"><br data-mce-fragment=\"1\">- Full length legging<br data-mce-fragment=\"1\">- High-waisted<br data-mce-fragment=\"1\">- Compressive fit<br data-mce-fragment=\"1\">- Internal adjustable elastic/drawcord at front waistband<br data-mce-fragment=\"1\">- Pocket to back of waistband<br data-mce-fragment=\"1\">- Reflective Gymshark sharkhead logo to ankle<br data-mce-fragment=\"1\">- Main: 88% Polyester 12% Elastane. Internal Mesh: 76% Nylon 24% Elastane<br data-mce-fragment=\"1\">- We've cut down our use of swing tags, so this product comes without one<br data-mce-fragment=\"1\">- Model is <meta charset=\"utf-8\"><span data-mce-fragment=\"1\" lang=\"EN-GB\" class=\"TextRun SCXP103297068 BCX0\" data-contrast=\"none\" data-usefontface=\"true\" xml:lang=\"EN-GB\"><span data-mce-fragment=\"1\" class=\"NormalTextRun SCXP103297068 BCX0\">5'3\" and wears a size M</span></span><br data-mce-fragment=\"1\">- SKU: B3A3E-UBCY</p>",
                 type = "type",
                 gender = listOf("m", "f"),
                 fit = "fit",
@@ -61,6 +64,7 @@ class ProductDetails(
     }
 }
 
+@Parcelize
 @JsonClass(generateAdapter = true)
 class AvailableSize(
     @Json(name = "id") val id: Long,
@@ -69,7 +73,7 @@ class AvailableSize(
     @Json(name = "price") val price: Double,
     @Json(name = "size") val size: String,
     @Json(name = "sku") val sku: String,
-) {
+): Parcelable {
     companion object {
         fun createMock(
             inStock: Boolean,
@@ -85,6 +89,7 @@ class AvailableSize(
     }
 }
 
+@Parcelize
 @JsonClass(generateAdapter = true)
 class Media(
     @Json(name = "admin_graphql_api_id") val adminGraphQlApiId: String,
@@ -98,7 +103,7 @@ class Media(
     @Json(name = "updated_at") val updatedAt: String,
     @Json(name = "variant_ids") val variantIds: List<Int>,
     @Json(name = "width") val width: Int,
-) {
+): Parcelable {
     companion object {
         fun createMock(position: Int) =
             Media(

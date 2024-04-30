@@ -1,4 +1,4 @@
-package com.example.composeapp.product.feature
+package com.example.composeapp.product.feature.plp
 
 import com.example.composeapp.product.data.product.ProductDetails
 

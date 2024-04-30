@@ -1,4 +1,4 @@
-package com.example.composeapp.product.feature.components
+package com.example.composeapp.product.feature.plp.components
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview

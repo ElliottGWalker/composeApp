@@ -1,4 +1,4 @@
-package com.example.composeapp.product.feature
+package com.example.composeapp.product.feature.plp
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -29,12 +29,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.composeapp.product.data.product.ProductDetails
-import com.example.composeapp.product.feature.PlpUiState.LoadedEmptyPlpUiState
-import com.example.composeapp.product.feature.PlpUiState.LoadedErrorPlpUiState
-import com.example.composeapp.product.feature.PlpUiState.LoadedPlpUiState
-import com.example.composeapp.product.feature.PlpUiState.LoadingPlpUiState
-import com.example.composeapp.product.feature.components.PlpProductTile
+import com.example.composeapp.product.feature.PlpNavGraph
+import com.example.composeapp.product.feature.R
+import com.example.composeapp.product.feature.plp.components.PlpProductTile
 import com.example.composeapp.product.feature.destinations.PdpScreenDestination
+import com.example.composeapp.product.feature.plp.PlpUiState.LoadedEmptyPlpUiState
+import com.example.composeapp.product.feature.plp.PlpUiState.LoadedErrorPlpUiState
+import com.example.composeapp.product.feature.plp.PlpUiState.LoadedPlpUiState
+import com.example.composeapp.product.feature.plp.PlpUiState.LoadingPlpUiState
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
@@ -51,7 +53,7 @@ fun PlpScreen(
     PlpScreen(
         uiState = uiState,
         searchTerm = searchTerm,
-        onProductClick = { navigator.navigate(PdpScreenDestination()) },
+        onProductClick = { product -> navigator.navigate(PdpScreenDestination(product = product)) },
         onRetryClick = { viewModel.getProducts() },
     )
 }
@@ -82,7 +84,7 @@ private fun PlpScreen(
                         uiState = uiState,
                         onProductClick = onProductClick,
                     )
-                is LoadedErrorPlpUiState -> PlpLoadedErrorContent(onRetryClick = onRetryClick,)
+                is LoadedErrorPlpUiState -> PlpLoadedErrorContent(onRetryClick = onRetryClick)
             }
         }
     }
@@ -113,9 +115,10 @@ private fun PlpLoadedEmptyContent(onRetryClick: () -> Unit) {
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(16.dp),
     ) {
         Text(
             text = stringResource(R.string.no_products_returned),
@@ -161,9 +164,10 @@ private fun PlpLoadedErrorContent(onRetryClick: () -> Unit) {
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(16.dp),
     ) {
         Text(
             text = stringResource(R.string.something_went_wrong_please_try_again),

@@ -3,4 +3,5 @@
     <string name="something_went_wrong_please_try_again">Something went wrong, please try again.</string>
     <string name="retry">Retry</string>
     <string name="no_products_returned">No products returned, please look for another product or search again later</string>
+    <string name="back">Back</string>
 </resources>
