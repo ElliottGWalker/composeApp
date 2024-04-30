@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -28,14 +29,16 @@ fun ProductTile(
     onProductClick: (ProductDetails) -> Unit,
 ) {
     Card(
-        modifier =
-            Modifier
-                .background(color = Color.White)
-                .clickable { onProductClick(product) },
+        elevation = 0.dp,
+        modifier = Modifier
+            .background(color = Color.White)
+            .clickable { onProductClick(product) },
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(8.dp),
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .padding(bottom = 32.dp)
+                .fillMaxWidth(),
         ) {
             Box {
                 UrlImage(

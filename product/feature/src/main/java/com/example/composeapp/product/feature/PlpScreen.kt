@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.itemsIndexed
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
@@ -23,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.composeapp.product.data.product.ProductDetails
+import com.example.composeapp.product.feature.PlpUiState.LoadedEmptyPlpUiState
 import com.example.composeapp.product.feature.PlpUiState.LoadedErrorPlpUiState
 import com.example.composeapp.product.feature.PlpUiState.LoadedPlpUiState
 import com.example.composeapp.product.feature.PlpUiState.LoadingPlpUiState
@@ -59,6 +60,7 @@ private fun PlpScreen(
         ) {
             when (uiState) {
                 is LoadingPlpUiState -> PlpLoadingContent()
+                is LoadedEmptyPlpUiState -> PlpLoadedEmptyContent()
                 is LoadedPlpUiState ->
                     PlpLoadedContent(
                         uiState = uiState,
@@ -93,6 +95,11 @@ private fun BoxScope.PlpLoadingContent() {
 }
 
 @Composable
+private fun PlpLoadedEmptyContent() {
+    // TODO: add ui here
+}
+
+@Composable
 private fun PlpLoadedContent(
     uiState: LoadedPlpUiState,
     onProductClick: (ProductDetails) -> Unit,
@@ -105,11 +112,10 @@ private fun PlpLoadedContent(
             state = gridState,
             contentPadding = PaddingValues(4.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
-            itemsIndexed(
+            items(
                 items = uiState.plpList,
-            ) { index, product ->
+            ) { product ->
                 PlpProductTile(
                     product = product,
                     onProductClick = onProductClick,
@@ -127,6 +133,9 @@ private fun PlpScreenLoadedWithProductsPreview() {
             LoadedPlpUiState(
                 plpList =
                     listOf(
+                        ProductDetails.createMock(),
+                        ProductDetails.createMock(),
+                        ProductDetails.createMock(),
                         ProductDetails.createMock(),
                         ProductDetails.createMock(),
                         ProductDetails.createMock(),

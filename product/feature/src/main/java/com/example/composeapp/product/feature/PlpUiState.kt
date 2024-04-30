@@ -7,6 +7,8 @@ sealed class PlpUiState {
 
     data object LoadedErrorPlpUiState : PlpUiState()
 
+    data object LoadedEmptyPlpUiState : PlpUiState()
+
     class LoadedPlpUiState(
         val plpList: List<ProductDetails>,
     ) : PlpUiState()

@@ -3,7 +3,7 @@ package com.example.composeapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.example.composeapp.ui.theme.ComposeAppTheme
+import com.example.composeapp.ui.theming.ComposeAppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
