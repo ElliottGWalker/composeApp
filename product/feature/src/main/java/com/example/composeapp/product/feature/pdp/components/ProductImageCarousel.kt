@@ -3,6 +3,7 @@ package com.example.composeapp.product.feature.pdp.components
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.gestures.snapping.SnapLayoutInfoProvider
 import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -22,27 +23,29 @@ internal fun ProductImageCarousel(
     listState: LazyListState,
     imageUrls: List<String>,
 ) {
-    LazyRow(
-        state = listState,
-        flingBehavior =
-            rememberSnapFlingBehavior(
-                snapLayoutInfoProvider =
-                    SnapLayoutInfoProvider(
-                        lazyListState = listState,
-                        positionInLayout = { _, _, _, _, _ -> 0 },
-                    ),
-            ),
-        modifier =
-        Modifier
-            .fillMaxWidth()
-            .height(400.dp),
-    ) {
-        items(imageUrls) { url ->
-            CarouselImage(
-                imageUrl = url,
-                modifier = Modifier.fillParentMaxWidth()
-            )
-        }
+    Box {
+        LazyRow(
+            state = listState,
+            flingBehavior =
+                rememberSnapFlingBehavior(
+                    snapLayoutInfoProvider =
+                        SnapLayoutInfoProvider(
+                            lazyListState = listState,
+                            positionInLayout = { _, _, _, _, _ -> 0 },
+                        ),
+                ),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .height(400.dp),
+        ) {
+            items(imageUrls) { url ->
+                CarouselImage(
+                    imageUrl = url,
+                    modifier = Modifier.fillParentMaxWidth(),
+                )
+            }
+       }
     }
 }
 

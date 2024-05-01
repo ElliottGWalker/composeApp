@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import com.example.composeapp.product.data.product.ProductDetails
 import com.example.composeapp.ui.components.R
 import com.example.composeapp.ui.components.images.UrlImage
+import com.example.composeapp.ui.components.text.CurrencyText
 import com.example.composeapp.ui.theming.TextSize
 
 @Composable
@@ -30,15 +31,17 @@ fun ProductTile(
 ) {
     Card(
         elevation = 0.dp,
-        modifier = Modifier
-            .background(color = Color.White)
-            .clickable { onProductClick(product) },
+        modifier =
+            Modifier
+                .background(color = Color.White)
+                .clickable { onProductClick(product) },
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(8.dp),
-            modifier = Modifier
-                .padding(bottom = 32.dp)
-                .fillMaxWidth(),
+            modifier =
+                Modifier
+                    .padding(bottom = 32.dp)
+                    .fillMaxWidth(),
         ) {
             Box {
                 UrlImage(
@@ -77,8 +80,8 @@ fun ProductTile(
                 text = product.colour,
                 fontSize = TextSize.Small,
             )
-            Text(
-                text = product.price.toString(),
+            CurrencyText(
+                price = product.price,
                 fontSize = TextSize.Large,
                 fontWeight = FontWeight.Bold,
             )

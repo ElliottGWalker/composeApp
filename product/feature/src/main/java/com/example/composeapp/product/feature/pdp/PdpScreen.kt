@@ -36,6 +36,7 @@ import com.example.composeapp.product.feature.pdp.PdpUiState.LoadedPdpState
 import com.example.composeapp.product.feature.pdp.components.ProductDescription
 import com.example.composeapp.product.feature.pdp.components.ProductImageCarousel
 import com.example.composeapp.ui.components.producttile.Labels
+import com.example.composeapp.ui.components.text.CurrencyText
 import com.example.composeapp.ui.theming.TextSize
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -140,8 +141,8 @@ private fun PdpLoadedContent(uiState: LoadedPdpState) {
                     fontSize = TextSize.Large,
                     modifier = Modifier.weight(1f),
                 )
-                Text(
-                    text = uiState.product.price.toString(),
+                CurrencyText(
+                    price = uiState.product.price,
                     fontSize = TextSize.Large,
                     fontWeight = FontWeight.Bold,
                 )
