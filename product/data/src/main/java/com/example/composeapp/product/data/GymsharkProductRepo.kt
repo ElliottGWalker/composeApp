@@ -1,8 +1,8 @@
 package com.example.composeapp.product.data
 
 import com.example.composeapp.core.network.Response
-import com.example.composeapp.core.network.Response.Failure
 import com.example.composeapp.core.network.Response.Success
+import com.example.composeapp.core.network.failureHandlingForServices
 import com.example.composeapp.product.data.product.ProductDetails
 import com.example.composeapp.product.data.product.ProductService
 import javax.inject.Inject
@@ -19,7 +19,7 @@ internal class GymsharkProductRepo
                 val response = productService.getProducts()
                 Success(data = response.products)
             } catch (e: Exception) {
-                Failure(e)
+                failureHandlingForServices(e)
             }
         }
     }

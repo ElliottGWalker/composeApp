@@ -1,5 +1,8 @@
 import com.android.build.api.dsl.SettingsExtension
 
+include(":test")
+
+
 pluginManagement {
     repositories {
         google {

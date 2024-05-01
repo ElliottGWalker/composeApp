@@ -28,6 +28,7 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.moshi)
 
+    testImplementation(projects.test)
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
 }

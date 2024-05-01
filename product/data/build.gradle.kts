@@ -25,6 +25,7 @@ dependencies {
     ksp(libs.moshi.codegen)
     implementation(libs.moshi.adapters)
 
+    testImplementation(projects.test)
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
 }
