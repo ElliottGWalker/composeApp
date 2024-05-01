@@ -29,6 +29,7 @@ dependencies {
     implementation(libs.retrofit.converter.moshi)
 
     testImplementation(libs.junit)
+    testImplementation(libs.mockk)
 }
 
 kotlin {
