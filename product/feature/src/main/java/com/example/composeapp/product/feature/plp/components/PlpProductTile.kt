@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.composeapp.product.data.product.ProductDetails
 import com.example.composeapp.ui.components.producttile.ProductTile
+import com.example.composeapp.ui.theming.ComposeAppTheme
 
 @Composable
 internal fun PlpProductTile(
@@ -19,8 +20,10 @@ internal fun PlpProductTile(
 @Preview
 @Composable
 private fun PlpProductTilePreview() {
-    PlpProductTile(
-        product = ProductDetails.createMock(),
-        onProductClick = { /* unused */ }
-    )
+    ComposeAppTheme {
+        PlpProductTile(
+            product = ProductDetails.createMock(),
+            onProductClick = { /* unused */ }
+        )
+    }
 }

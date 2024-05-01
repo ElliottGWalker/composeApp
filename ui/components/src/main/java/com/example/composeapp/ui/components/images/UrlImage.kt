@@ -20,6 +20,7 @@ import coil.compose.AsyncImagePainter.State
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.composeapp.ui.components.R
+import com.example.composeapp.ui.theming.ComposeAppTheme
 
 val showingError = mutableStateOf(false)
 
@@ -88,20 +89,26 @@ internal fun ImageContent(
 @Preview
 @Composable
 private fun UrlImagePreview() {
-    UrlImage(
-        url = "https://picsum.photos/200/300",
-        contentDescription = "",
-        contentScale = ContentScale.Fit,
-    )
+    ComposeAppTheme {
+        UrlImage(
+            url = "https://picsum.photos/200/300",
+            contentDescription = "",
+            contentScale = ContentScale.Fit,
+        )
+    }
 }
 
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
 private fun ImageContentErrorPreview() {
-    ImageContent(
-        isError = true,
-        asyncImagePainter = rememberAsyncImagePainter(model = ImageRequest.Builder(LocalContext.current).build()),
-        contentDescription = "",
-        contentScale = ContentScale.Fit,
-    )
+    ComposeAppTheme {
+        ImageContent(
+            isError = true,
+            asyncImagePainter = rememberAsyncImagePainter(
+                model = ImageRequest.Builder(LocalContext.current).build()
+            ),
+            contentDescription = "",
+            contentScale = ContentScale.Fit,
+        )
+    }
 }

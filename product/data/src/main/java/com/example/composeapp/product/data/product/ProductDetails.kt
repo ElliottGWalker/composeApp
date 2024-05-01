@@ -5,6 +5,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.parcelize.Parcelize
 
+// Would normally remove the unused variable from this class
 @Parcelize
 @JsonClass(generateAdapter = true)
 class ProductDetails(

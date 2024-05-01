@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.composeapp.ui.theming.ComposeAppTheme
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -54,17 +55,20 @@ private fun getLabelText(label: String): String {
 @Preview(showBackground = true)
 @Composable
 private fun LabelsShortListPreview() {
-    Labels(
-        items = listOf("new", "going-fast"),
-        modifier = Modifier.fillMaxWidth(),
-    )
+    ComposeAppTheme {
+        Labels(
+            items = listOf("new", "going-fast"),
+            modifier = Modifier.fillMaxWidth(),
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun LabelsLongListPreview() {
-    Labels(
-        items =
+    ComposeAppTheme {
+        Labels(
+            items =
             listOf(
                 "new",
                 "going-fast",
@@ -72,7 +76,9 @@ private fun LabelsLongListPreview() {
                 "popular",
                 "recycled-nylon",
                 "recycled-polyester",
+                "test-label",
             ),
-        modifier = Modifier.fillMaxWidth(),
-    )
+            modifier = Modifier.fillMaxWidth(),
+        )
+    }
 }

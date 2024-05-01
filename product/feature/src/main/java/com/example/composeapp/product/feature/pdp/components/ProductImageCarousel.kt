@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.composeapp.ui.components.images.UrlImage
+import com.example.composeapp.ui.theming.ComposeAppTheme
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -62,9 +63,11 @@ private fun CarouselImage(
 @Preview
 @Composable
 private fun ProductImageCarouselPreview() {
-    val listState = rememberLazyListState()
-    ProductImageCarousel(
-        listState = listState,
-        imageUrls = listOf("", ""),
-    )
+    ComposeAppTheme {
+        val listState = rememberLazyListState()
+        ProductImageCarousel(
+            listState = listState,
+            imageUrls = listOf("", ""),
+        )
+    }
 }

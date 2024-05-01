@@ -6,6 +6,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
+import com.example.composeapp.ui.theming.ComposeAppTheme
 import java.text.NumberFormat
 import java.util.Currency
 
@@ -32,7 +33,9 @@ fun CurrencyText(
 @Preview(showBackground = true)
 @Composable
 private fun CurrencyTextPreview() {
-    CurrencyText(
-        price = 10.0,
-    )
+    ComposeAppTheme {
+        CurrencyText(
+            price = 10.0,
+        )
+    }
 }

@@ -22,6 +22,7 @@ import com.example.composeapp.product.data.product.ProductDetails
 import com.example.composeapp.ui.components.R
 import com.example.composeapp.ui.components.images.UrlImage
 import com.example.composeapp.ui.components.text.CurrencyText
+import com.example.composeapp.ui.theming.ComposeAppTheme
 import com.example.composeapp.ui.theming.TextSize
 
 @Composable
@@ -92,8 +93,10 @@ fun ProductTile(
 @Preview
 @Composable
 private fun ProductTilePreview() {
-    ProductTile(
-        product = ProductDetails.createMock(),
-        onProductClick = { /* unused */ },
-    )
+    ComposeAppTheme {
+        ProductTile(
+            product = ProductDetails.createMock(),
+            onProductClick = { /* unused */ },
+        )
+    }
 }

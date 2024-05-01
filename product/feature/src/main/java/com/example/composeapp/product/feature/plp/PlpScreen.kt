@@ -31,12 +31,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.composeapp.product.data.product.ProductDetails
 import com.example.composeapp.product.feature.PlpNavGraph
 import com.example.composeapp.product.feature.R
-import com.example.composeapp.product.feature.plp.components.PlpProductTile
 import com.example.composeapp.product.feature.destinations.PdpScreenDestination
 import com.example.composeapp.product.feature.plp.PlpUiState.LoadedEmptyPlpUiState
 import com.example.composeapp.product.feature.plp.PlpUiState.LoadedErrorPlpUiState
 import com.example.composeapp.product.feature.plp.PlpUiState.LoadedPlpUiState
 import com.example.composeapp.product.feature.plp.PlpUiState.LoadingPlpUiState
+import com.example.composeapp.product.feature.plp.components.PlpProductTile
+import com.example.composeapp.ui.theming.ComposeAppTheme
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
@@ -185,54 +186,62 @@ private fun PlpLoadedErrorContent(onRetryClick: () -> Unit) {
 @Preview(showBackground = true)
 @Composable
 private fun PlpScreenLoadedWithProductsPreview() {
-    PlpScreen(
-        uiState =
+    ComposeAppTheme {
+        PlpScreen(
+            uiState =
             LoadedPlpUiState(
                 plpList =
-                    listOf(
-                        ProductDetails.createMock(),
-                        ProductDetails.createMock(),
-                        ProductDetails.createMock(),
-                        ProductDetails.createMock(),
-                        ProductDetails.createMock(),
-                        ProductDetails.createMock(),
-                    ),
+                listOf(
+                    ProductDetails.createMock(),
+                    ProductDetails.createMock(),
+                    ProductDetails.createMock(),
+                    ProductDetails.createMock(),
+                    ProductDetails.createMock(),
+                    ProductDetails.createMock(),
+                ),
             ),
-        searchTerm = "Leggings",
-        onProductClick = { /* unused */ },
-        onRetryClick = { /* unused */ },
-    )
+            searchTerm = "Leggings",
+            onProductClick = { /* unused */ },
+            onRetryClick = { /* unused */ },
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun PlpScreenLoadingPreview() {
-    PlpScreen(
-        uiState = LoadingPlpUiState,
-        searchTerm = "Leggings",
-        onProductClick = { /* unused */ },
-        onRetryClick = { /* unused */ },
-    )
+    ComposeAppTheme {
+        PlpScreen(
+            uiState = LoadingPlpUiState,
+            searchTerm = "Leggings",
+            onProductClick = { /* unused */ },
+            onRetryClick = { /* unused */ },
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun PlpScreenLoadedEmptyStatePreview() {
-    PlpScreen(
-        uiState = LoadedEmptyPlpUiState,
-        searchTerm = "Leggings",
-        onProductClick = { /* unused */ },
-        onRetryClick = { /* unused */ },
-    )
+    ComposeAppTheme {
+        PlpScreen(
+            uiState = LoadedEmptyPlpUiState,
+            searchTerm = "Leggings",
+            onProductClick = { /* unused */ },
+            onRetryClick = { /* unused */ },
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun PlpScreenLoadedErrorStatePreview() {
-    PlpScreen(
-        uiState = LoadedErrorPlpUiState,
-        searchTerm = "Leggings",
-        onProductClick = { /* unused */ },
-        onRetryClick = { /* unused */ },
-    )
+    ComposeAppTheme {
+        PlpScreen(
+            uiState = LoadedErrorPlpUiState,
+            searchTerm = "Leggings",
+            onProductClick = { /* unused */ },
+            onRetryClick = { /* unused */ },
+        )
+    }
 }

@@ -37,6 +37,7 @@ import com.example.composeapp.product.feature.pdp.components.ProductDescription
 import com.example.composeapp.product.feature.pdp.components.ProductImageCarousel
 import com.example.composeapp.ui.components.producttile.Labels
 import com.example.composeapp.ui.components.text.CurrencyText
+import com.example.composeapp.ui.theming.ComposeAppTheme
 import com.example.composeapp.ui.theming.TextSize
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -173,12 +174,14 @@ private fun PdpLoadedContent(uiState: LoadedPdpState) {
 @Preview
 @Composable
 fun PdpScreenPreview() {
-    PdpScreen(
-        uiState =
+    ComposeAppTheme {
+        PdpScreen(
+            uiState =
             LoadedPdpState(
                 product = ProductDetails.createMock(),
             ),
-        pdpTitle = "Title",
-        onBackClick = { /* unused */ },
-    )
+            pdpTitle = "Title",
+            onBackClick = { /* unused */ },
+        )
+    }
 }

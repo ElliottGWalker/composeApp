@@ -9,6 +9,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.text.HtmlCompat
 import com.example.composeapp.product.data.product.ProductDetails
+import com.example.composeapp.ui.theming.ComposeAppTheme
 import com.google.android.material.textview.MaterialTextView
 
 @Composable
@@ -38,5 +39,7 @@ private fun Html(html: String) {
 @Preview(showBackground = true)
 @Composable
 private fun ProductDescriptionPreview() {
-    ProductDescription(description = ProductDetails.createMock().description)
+    ComposeAppTheme {
+        ProductDescription(description = ProductDetails.createMock().description)
+    }
 }
