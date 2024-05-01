@@ -30,7 +30,7 @@ class PdpViewModel
             setPdpTitle(navArgs)
         }
 
-        private fun setPdpTitle(pdpScreenNavArgs: PdpScreenNavArgs) {
+        internal fun setPdpTitle(pdpScreenNavArgs: PdpScreenNavArgs) {
             _pdpTitle.value = pdpScreenNavArgs.product.title
         }
     }
