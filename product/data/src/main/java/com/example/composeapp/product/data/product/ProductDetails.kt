@@ -28,6 +28,7 @@ class ProductDetails(
     @Json(name = "media") val media: List<Media>,
     @Json(name = "objectID") val objectID: String,
 ) : Parcelable {
+
     val imageUrls by lazy {
         media.map { it.src }
     }
@@ -50,7 +51,7 @@ class ProductDetails(
                 type = "type",
                 gender = listOf("m", "f"),
                 fit = "fit",
-                labels = listOf("NEW", "GOING_FAST"),
+                labels = listOf("new", "going-fast"),
                 colour = "Grey",
                 price = 10.00,
                 compareAtPrice = false,

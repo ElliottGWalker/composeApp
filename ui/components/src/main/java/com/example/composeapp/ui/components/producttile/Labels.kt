@@ -28,7 +28,7 @@ fun Labels(
     ) {
         for (label in items) {
             Text(
-                text = label,
+                text = getLabelText(label),
                 fontWeight = FontWeight.Bold,
                 modifier =
                     Modifier
@@ -39,11 +39,23 @@ fun Labels(
     }
 }
 
+private fun getLabelText(label: String): String {
+    return when (label) {
+        "new" -> "New"
+        "going-fast" -> "Going fast"
+        "popular" -> "Popular"
+        "limited-edition" -> "Limited edition"
+        "recycled-nylon" -> "Recycled nylon"
+        "recycled-polyester" -> "Recycled polyester"
+        else -> label
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 private fun LabelsShortListPreview() {
     Labels(
-        items = listOf("NEW", "GOING_FAST"),
+        items = listOf("new", "going-fast"),
         modifier = Modifier.fillMaxWidth(),
     )
 }
@@ -54,12 +66,12 @@ private fun LabelsLongListPreview() {
     Labels(
         items =
             listOf(
-                "NEW",
-                "GOING_FAST",
-                "LIMITED_EDITION",
-                "POPULAR",
-                "RECYCLED_NYLON",
-                "RECYCLED_POLYESTER",
+                "new",
+                "going-fast",
+                "limited-edition",
+                "popular",
+                "recycled-nylon",
+                "recycled-polyester",
             ),
         modifier = Modifier.fillMaxWidth(),
     )
