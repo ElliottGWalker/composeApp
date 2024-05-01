@@ -8,11 +8,11 @@ import org.junit.Test
 
 internal class PdpViewModelTest {
     private val product = ProductDetails.createMock()
-    private lateinit var viewModel: PdpViewModel
+    private lateinit var pdpViewModel: PdpViewModel
 
     @Before
     fun setup() {
-        viewModel =
+        pdpViewModel =
             PdpViewModel(
                 SavedStateHandle(
                     mapOf(
@@ -24,7 +24,7 @@ internal class PdpViewModelTest {
 
     @Test
     fun `uiState - should have the correct initial state`() {
-        val result = viewModel.uiState.value
+        val result = pdpViewModel.uiState.value
 
         assert(result is PdpUiState.LoadedPdpState)
         result as PdpUiState.LoadedPdpState
@@ -35,8 +35,8 @@ internal class PdpViewModelTest {
     fun `setPdpTitle() - should use`() {
         val pdpScreenNavArgs = PdpScreenNavArgs(product)
 
-        viewModel.setPdpTitle(pdpScreenNavArgs)
+        pdpViewModel.setPdpTitle(pdpScreenNavArgs)
 
-        assertEquals("title", viewModel.pdpTitle.value)
+        assertEquals("title", pdpViewModel.pdpTitle.value)
     }
 }

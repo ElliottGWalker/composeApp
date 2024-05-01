@@ -14,6 +14,7 @@ android {
 dependencies {
     implementation(libs.junit)
     implementation(libs.mockk)
+    implementation(libs.kotlin.coroutine.test)
 }
 
 kotlin {
