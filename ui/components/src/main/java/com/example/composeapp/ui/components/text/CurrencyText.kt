@@ -8,7 +8,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import java.text.NumberFormat
 import java.util.Currency
-import java.util.Locale
 
 @Composable
 fun CurrencyText(
@@ -19,7 +18,8 @@ fun CurrencyText(
 ) {
     val currencyFormat = NumberFormat.getCurrencyInstance()
     currencyFormat.maximumFractionDigits = 2
-    currencyFormat.currency = Currency.getInstance(Locale.getDefault())
+    // This currency code would come from core:config module based on the selected store (uk/us/etc)
+    currencyFormat.currency = Currency.getInstance("GBP")
     val priceText = currencyFormat.format(price)
     Text(
         text = priceText,
