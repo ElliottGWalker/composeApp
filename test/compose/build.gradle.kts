@@ -6,6 +6,10 @@ plugins {
 android {
     namespace = "com.example.composeapp.test.compose"
 
+    buildFeatures {
+        compose = true
+    }
+
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }

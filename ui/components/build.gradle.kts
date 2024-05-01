@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.paparazzi)
 }
 
 android {
@@ -32,9 +33,26 @@ dependencies {
     implementation(libs.moshi)
 
     testImplementation(libs.junit)
+    testImplementation(projects.test)
+    testImplementation(projects.test.compose)
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+}
+
+dependencies.constraints {
+    testImplementation("com.google.guava:guava") {
+        attributes {
+            attribute(
+                TargetJvmEnvironment.TARGET_JVM_ENVIRONMENT_ATTRIBUTE,
+                objects.named(TargetJvmEnvironment::class.java, TargetJvmEnvironment.STANDARD_JVM),
+            )
+        }
+        because(
+            "Paparazzi's layoutlib and sdk-common depend on Guava's -jre published variant." +
+                "See https://github.com/cashapp/paparazzi/issues/906.",
+        )
+    }
 }
 
 kotlin {

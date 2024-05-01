@@ -60,7 +60,7 @@ fun PlpScreen(
 }
 
 @Composable
-private fun PlpScreen(
+internal fun PlpScreen(
     uiState: PlpUiState,
     searchTerm: String,
     onProductClick: (ProductDetails) -> Unit,

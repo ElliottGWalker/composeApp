@@ -1,11 +1,5 @@
 import com.android.build.api.dsl.SettingsExtension
 
-include(":test:compose")
-
-
-include(":test")
-
-
 pluginManagement {
     repositories {
         google {
@@ -45,5 +39,7 @@ include(":app")
 include(":core:network")
 include(":product:data")
 include(":product:feature")
+include(":test")
+include(":test:compose")
 include(":ui:components")
 include(":ui:theming")
