@@ -26,7 +26,7 @@ fun ProductDescription(
 
 @Composable
 private fun Html(html: String) {
-    val spannedText = HtmlCompat.fromHtml(html, 0)
+    val spannedText = HtmlCompat.fromHtml(html, HtmlCompat.FROM_HTML_MODE_COMPACT)
     Column {
         AndroidView(
             factory = { MaterialTextView(it) },

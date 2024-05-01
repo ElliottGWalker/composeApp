@@ -38,14 +38,20 @@ internal fun ProductImageCarousel(
             .height(400.dp),
     ) {
         items(imageUrls) { url ->
-            CarouselImage(imageUrl = url)
+            CarouselImage(
+                imageUrl = url,
+                modifier = Modifier.fillParentMaxWidth()
+            )
         }
     }
 }
 
 @Composable
-private fun CarouselImage(imageUrl: String) {
-    Column {
+private fun CarouselImage(
+    imageUrl: String,
+    modifier: Modifier = Modifier,
+) {
+    Column(modifier = modifier) {
         UrlImage(url = imageUrl, contentDescription = "")
     }
 }
